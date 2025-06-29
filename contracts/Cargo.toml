@@ -1,0 +1,32 @@
+[package]
+name = "quantum-thermoledger-contracts"
+version = "1.0.0"
+edition = "2021"
+authors = ["Quantum ThermoLedger Team"]
+description = "Smart contracts for quantum energy and thermodynamic validation"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+fabric-contract-api = "0.2"
+log = "0.4"
+thiserror = "1.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[[bin]]
+name = "quantum_validator"
+path = "src/quantum_validator.rs"
+
+[[bin]]
+name = "thermo_state_tracker"
+path = "src/thermo_state_tracker.rs"
+
+[[bin]]
+name = "energy_ledger_manager"
+path = "src/energy_ledger_manager.rs"
+
+[[bin]]
+name = "consensus_validator"
+path = "src/consensus_validator.rs"
