@@ -12,7 +12,7 @@
     "simulate": "python simulations/run_simulations.py",
     "contracts:build": "cd contracts && cargo build",
     "contracts:test": "cd contracts && cargo test",
-    "clean-install": "npm cache clean --force && rm -rf node_modules package-lock.json && npm install"
+    "clean-install": "rm -rf node_modules package-lock.json && npm install"
   },
   "dependencies": {
     "react": "^18.2.0",
