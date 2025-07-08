@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Code, 
@@ -327,15 +327,15 @@ impl ThermoStateTracker {
                     <div className="flex space-x-4">
                       <button
                         onClick={() => handleDeploy(contract?.id)}
-                        disabled={contract?.status === 'deployed'}
+                        disabled={deploymentStatus === 'deploying' || contract?.status === 'deployed'}
                         className={`flex items-center px-4 py-2 rounded-lg font-medium transition-all ${
-                          contract?.status === 'deployed'
+                          deploymentStatus === 'deploying' || contract?.status === 'deployed'
                             ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                             : 'bg-green-600 hover:bg-green-700 text-white'
                         }`}
                       >
                         <Play className="mr-2 h-4 w-4" />
-                        {contract?.status === 'deployed' ? 'Deployed' : 'Deploy'}
+                        {deploymentStatus === 'deploying' ? 'Deploying...' : (contract?.status === 'deployed' ? 'Deployed' : 'Deploy')}
                       </button>
                       <button className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all">
                         <FileText className="mr-2 h-4 w-4" />

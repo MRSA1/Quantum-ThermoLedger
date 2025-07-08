@@ -1,4 +1,3 @@
-import React from 'react'
 import { Github, ExternalLink, Atom, Thermometer } from 'lucide-react'
 
 const Footer = () => {
