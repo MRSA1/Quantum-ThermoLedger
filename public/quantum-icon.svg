@@ -1,9 +1,41 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="16" cy="16" r="14" stroke="#0ea5e9" stroke-width="2" fill="none"/>
-  <circle cx="16" cy="16" r="8" stroke="#ef4444" stroke-width="1.5" fill="none"/>
-  <circle cx="16" cy="16" r="3" fill="#0ea5e9"/>
-  <path d="M16 2 L18 6 L16 10 L14 6 Z" fill="#ef4444"/>
-  <path d="M30 16 L26 18 L22 16 L26 14 Z" fill="#ef4444"/>
-  <path d="M16 30 L14 26 L16 22 L18 26 Z" fill="#ef4444"/>
-  <path d="M2 16 L6 14 L10 16 L6 18 Z" fill="#ef4444"/>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="quantumGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Atom nucleus -->
+  <circle cx="32" cy="32" r="4" fill="url(#quantumGradient)" />
+  
+  <!-- Electron orbits -->
+  <ellipse cx="32" cy="32" rx="20" ry="8" fill="none" stroke="url(#quantumGradient)" stroke-width="2" opacity="0.7" />
+  <ellipse cx="32" cy="32" rx="8" ry="20" fill="none" stroke="url(#quantumGradient)" stroke-width="2" opacity="0.7" />
+  <ellipse cx="32" cy="32" rx="16" ry="16" fill="none" stroke="url(#quantumGradient)" stroke-width="2" opacity="0.5" />
+  
+  <!-- Electrons -->
+  <circle cx="52" cy="32" r="2" fill="#3b82f6">
+    <animateMotion dur="3s" repeatCount="indefinite">
+      <mpath href="#orbit1"/>
+    </animateMotion>
+  </circle>
+  <circle cx="32" cy="12" r="2" fill="#8b5cf6">
+    <animateMotion dur="2s" repeatCount="indefinite">
+      <mpath href="#orbit2"/>
+    </animateMotion>
+  </circle>
+  <circle cx="43" cy="43" r="2" fill="#ef4444">
+    <animateMotion dur="4s" repeatCount="indefinite">
+      <mpath href="#orbit3"/>
+    </animateMotion>
+  </circle>
+  
+  <!-- Hidden paths for animation -->
+  <defs>
+    <path id="orbit1" d="M 12,32 A 20,8 0 1,1 52,32 A 20,8 0 1,1 12,32" />
+    <path id="orbit2" d="M 32,12 A 8,20 0 1,1 32,52 A 8,20 0 1,1 32,12" />
+    <path id="orbit3" d="M 16,16 A 16,16 0 1,1 48,48 A 16,16 0 1,1 16,16" />
+  </defs>
 </svg>

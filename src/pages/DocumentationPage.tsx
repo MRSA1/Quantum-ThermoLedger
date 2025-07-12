@@ -77,18 +77,6 @@ The smart contract ensures energy conservation by validating that the photon ene
 **Magnetic Quantum Number (m)**: Δm = 0, ±1
 
 These rules determine which electronic transitions are allowed and which are forbidden, ensuring physical accuracy in the validation process.`
-          },
-          {
-            title: 'Energy Level Calculations',
-            content: `For hydrogen-like atoms, energy levels are calculated using:
-
-**E_n = -13.6 eV × (Z²/n²)**
-
-Where:
-- Z = Atomic number
-- n = Principal quantum number
-
-The system validates that calculated energy differences match observed photon energies within specified tolerance limits.`
           }
         ]
       }
@@ -127,17 +115,6 @@ Where:
 For spontaneous processes: **ΔG < 0**
 
 The smart contract calculates Gibbs free energy changes and ensures thermodynamic feasibility of recorded phase transitions.`
-          },
-          {
-            title: 'Phase Diagrams',
-            content: `The system maintains phase diagrams for various substances and validates transitions:
-
-**Solid ↔ Liquid**: Melting/Freezing
-**Liquid ↔ Gas**: Vaporization/Condensation  
-**Solid ↔ Gas**: Sublimation/Deposition
-**Gas ↔ Plasma**: Ionization/Recombination
-
-Each transition is checked against pressure-temperature conditions and thermodynamic constraints.`
           }
         ]
       }
@@ -160,48 +137,6 @@ Each transition is checked against pressure-temperature conditions and thermodyn
 **ConsensusValidator**: Implements peer-to-peer validation
 
 Each contract is written in Rust for memory safety and performance, deployed on Hyperledger Fabric.`
-          },
-          {
-            title: 'Validation Algorithms',
-            content: `Key validation algorithms implemented:
-
-\`\`\`rust
-pub fn validate_transition(
-    &self,
-    transition: &QuantumTransition
-) -> Result<bool, String> {
-    // Energy conservation check
-    let energy_diff = (transition.final_energy - transition.initial_energy).abs();
-    let tolerance = 1e-15;
-    
-    if (transition.photon_energy - energy_diff).abs() > tolerance {
-        return Err("Energy conservation violation".to_string());
-    }
-    
-    // Selection rules validation
-    if !self.check_selection_rules(transition) {
-        return Err("Selection rules violated".to_string());
-    }
-    
-    Ok(true)
-}
-\`\`\`
-
-The contracts use high-precision floating-point arithmetic and implement comprehensive error handling.`
-          },
-          {
-            title: 'Gas Optimization',
-            content: `Smart contracts are optimized for minimal gas consumption:
-
-• **Efficient Data Structures**: Optimized memory layout
-• **Batch Processing**: Multiple validations in single transaction
-• **Lazy Evaluation**: Compute only when necessary
-• **Caching**: Store frequently accessed calculations
-
-Average gas costs:
-- Quantum validation: ~45,000 gas
-- Thermodynamic validation: ~38,000 gas
-- State recording: ~25,000 gas`
           }
         ]
       }
@@ -232,59 +167,6 @@ GET /metrics/realtime
 \`\`\`
 
 All endpoints return JSON responses with standardized error codes and messages.`
-          },
-          {
-            title: 'WebSocket Events',
-            content: `Real-time events via WebSocket connection:
-
-\`\`\`javascript
-const ws = new WebSocket('wss://api.quantum-thermoledger.com/ws');
-
-ws.on('quantum_transition', (data) => {
-  console.log('New quantum transition:', data);
-});
-
-ws.on('thermo_state_change', (data) => {
-  console.log('Thermodynamic state change:', data);
-});
-
-ws.on('validation_result', (data) => {
-  console.log('Validation completed:', data);
-});
-\`\`\`
-
-Events include real-time validation results, state changes, and system metrics.`
-          },
-          {
-            title: 'SDK Usage',
-            content: `JavaScript SDK for easy integration:
-
-\`\`\`javascript
-import { QuantumThermoLedger } from '@quantum-thermoledger/sdk';
-
-const client = new QuantumThermoLedger({
-  apiKey: 'your-api-key',
-  network: 'mainnet'
-});
-
-// Validate quantum transition
-const result = await client.quantum.validateTransition({
-  electronId: 'e1',
-  initialEnergy: 1.5,
-  finalEnergy: 3.2,
-  photonEnergy: 1.7
-});
-
-// Track thermodynamic state
-await client.thermo.recordState({
-  substanceId: 'H2O',
-  temperature: 373.15,
-  pressure: 101325,
-  phase: 'gas'
-});
-\`\`\`
-
-The SDK handles authentication, error handling, and provides TypeScript definitions.`
           }
         ]
       }
@@ -312,72 +194,7 @@ The SDK handles authentication, error handling, and provides TypeScript definiti
 - Node.js 18+
 - Python 3.9+
 - Docker 20.10+
-- Hyperledger Fabric 2.4+
-
-**Dependencies**:
-- PostgreSQL 14+
-- Redis 6.2+
-- NGINX 1.20+`
-          },
-          {
-            title: 'Installation Steps',
-            content: `1. **Clone the repository**:
-\`\`\`bash
-git clone https://github.com/MRSA1/Quantum-ThermoLedger.git
-cd Quantum-ThermoLedger
-\`\`\`
-
-2. **Build smart contracts**:
-\`\`\`bash
-cd contracts
-cargo build --release
-\`\`\`
-
-3. **Install frontend dependencies**:
-\`\`\`bash
-cd frontend
-npm install
-npm run build
-\`\`\`
-
-4. **Setup Python environment**:
-\`\`\`bash
-cd simulations
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-\`\`\`
-
-5. **Deploy to Hyperledger Fabric**:
-\`\`\`bash
-./scripts/deploy-contracts.sh
-\`\`\`
-
-6. **Start the system**:
-\`\`\`bash
-docker-compose up -d
-\`\`\``
-          },
-          {
-            title: 'Configuration',
-            content: `Key configuration files:
-
-**config/network.yaml**: Hyperledger Fabric network configuration
-**config/contracts.json**: Smart contract deployment settings
-**config/api.yaml**: REST API configuration
-**config/database.yaml**: Database connection settings
-
-Environment variables:
-\`\`\`bash
-QUANTUM_NETWORK=mainnet
-API_PORT=8080
-DB_HOST=localhost
-DB_PORT=5432
-REDIS_URL=redis://localhost:6379
-LOG_LEVEL=info
-\`\`\`
-
-Update configurations based on your deployment environment and requirements.`
+- Hyperledger Fabric 2.4+`
           }
         ]
       }
