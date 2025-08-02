@@ -59,7 +59,7 @@ const ContractsPage = () => {
     }
   ]
 
-  const contractCode = {
+  const contractCode: Record<string, string> = {
     quantum_validator: `use serde::{Deserialize, Serialize};
 use fabric_contract_api::contract::Contract;
 use fabric_contract_api::info::Info;
@@ -201,11 +201,11 @@ impl ThermoStateTracker {
 }`
   }
 
-  const handleCopyCode = (code) => {
+  const handleCopyCode = (code: string) => {
     navigator.clipboard.writeText(code)
   }
 
-  const handleDeploy = (contractId) => {
+  const handleDeploy = () => {
     // Simulate deployment
     setDeploymentStatus('deploying')
     setTimeout(() => {
@@ -326,7 +326,7 @@ impl ThermoStateTracker {
 
                     <div className="flex space-x-4">
                       <button
-                        onClick={() => handleDeploy(contract?.id)}
+                        onClick={() => handleDeploy()}
                         disabled={deploymentStatus === 'deploying' || contract?.status === 'deployed'}
                         className={`flex items-center px-4 py-2 rounded-lg font-medium transition-all ${
                           deploymentStatus === 'deploying' || contract?.status === 'deployed'
